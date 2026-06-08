@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>成绩打印</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:微软雅黑;}
+        body{background:#fff;}
+        .header{text-align:center;padding:22px 0;font-size:24px;font-weight:bold;box-shadow:0 2px 5px #eee;}
+        .container{display:flex;width:100%;margin-top:30px;}
+        .sidebar{width:220px;background:#fff;border-right:1px solid #eee;min-height:calc(100vh - 80px);padding:20px 0;}
+        .sidebar a{display:block;padding:15px 25px;color:#555;text-decoration:none;}
+        .sidebar a:hover{background:#fce4ec;color:#d87092;}
+        .main{flex:1;padding:30px;}
+        .select-box{margin-bottom:25px;}
+        .select-box select,.select-box input{padding:8px;border:1px solid #f8bbd0;border-radius:6px;margin-right:10px;}
+        .select-box button{padding:8px 15px;background:#f48fb1;color:#fff;border:none;border-radius:6px;cursor:pointer;}
+        .print-btn{margin:20px 0;padding:10px 25px;background:#228B22;color:#fff;border:none;border-radius:6px;font-size:15px;cursor:pointer;}
+        table{width:100%;border-collapse:collapse;}
+        th{background:#fce4ec;color:#d87092;padding:12px;border:1px solid #ccc;}
+        td{padding:10px;border:1px solid #ccc;text-align:center;}
+        @media print{
+            .sidebar,.header,.select-box,.print-btn{display:none !important;}
+        }
+    </style>
+</head>
+<body>
+    <div class="header">学生成绩数据库系统 - 成绩打印</div>
+    <div class="container">
+        <div class="sidebar">
+            <a href="/admin/index">首页</a>
+            <a href="/admin/stu_manage">学生管理</a>
+            <a href="/admin/course_manage">科目管理</a>
+            <a href="/admin/add_score">成绩录入</a>
+            <a href="/admin/score_manage">成绩修改/删除</a>
+            <a href="/admin/score_stat">成绩统计</a>
+            <a href="/admin/score_print">成绩打印</a>
+            <a href="/logout">退出登录</a>
+        </div>
+        <div class="main">
+            <div class="select-box">
+                <form action="/admin/score_print" method="get">
+                    <select name="course_id">
+                        <option value="">全部课程</option>
+                        {% for item in course_data %}
+                        <option value="{{item.course_id}}" {% if course_id==item.course_id %}selected{% endif %}>{{item.course_name}}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="text" name="term" placeholder="输入学期筛选" value="{{term}}">
+                    <button type="submit">筛选成绩</button>
+                </form>
+            </div>
+
+            <button class="print-btn" onclick="window.print()">点击打印当前成绩表</button>
+
+            <table>
+                <tr>
+                    <th>学号</th>
+                    <th>学生姓名</th>
+                    <th>学期</th>
+                    <th>课程名称</th>
+                    <th>考试分数</th>
+                    <th>评定结果</th>
+                </tr>
+                {% for s in print_list %}
+                <tr>
+                    <td>{{s.student_id}}</td>
+                    <td>{{s.student_name}}</td>
+                    <td>{{s.semester}}</td>
+                    <td>{{s.course_name}}</td>
+                    <td>{{s.score}}</td>
+                    <td>{% if s.score >= 60 %}合格{% else %}不合格{% endif %}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+</html>

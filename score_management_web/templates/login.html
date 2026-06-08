@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>登录 - 学生成绩数据库系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        /* 顶部标题栏 */
+        .header {
+            background-color: #ffffff;
+            color: #4a4a4a;
+            text-align: center;
+            padding: 22px 0;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        body {
+            background-color: #ffffff; /* 背景纯白 */
+        }
+
+        /* 登录框 */
+        .login-box {
+            width: 380px;
+            margin: 90px auto;
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(248, 187, 208, 0.3);
+        }
+
+        .login-box h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #d87092; /* 粉色标题 */
+        }
+
+        .input-item {
+            margin-bottom: 20px;
+        }
+
+        .input-item input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #f8bbd0; /* 粉色边框 */
+            border-radius: 8px;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .input-item input:focus {
+            border-color: #90caf9; /* 浅蓝撞色 */
+            box-shadow: 0 0 5px #90caf9;
+        }
+
+        /* 登录按钮 */
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #f48fb1; /* 粉色按钮 */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            background-color: #90caf9; /* hover 浅蓝 */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 顶部标题 -->
+    <div class="header">
+        学生成绩数据库系统
+    </div>
+
+    <!-- 登录框 -->
+    <div class="login-box">
+        <h2>账户登录</h2>
+        <form action="/do_login" method="post">
+            <div class="input-item">
+                <input type="text" name="username" placeholder="请输入账号" required>
+            </div>
+            <div class="input-item">
+                <input type="password" name="password" placeholder="请输入密码" required>
+            </div>
+            <button type="submit" class="login-btn">登录</button>
+        </form>
+    </div>
+
+</body>
+</html>

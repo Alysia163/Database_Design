@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>个人学期成绩</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:微软雅黑;}
+        body{background:#fff;}
+        .header{text-align:center;padding:20px;font-size:24px;font-weight:bold;box-shadow:0 2px 5px #eee;}
+        .content{width:90%;margin:30px auto;}
+        table{width:100%;border-collapse:collapse;text-align:center;}
+        th{background:#fce4ec;color:#d87092;padding:12px;border:1px solid #ccc;}
+        td{padding:10px;border:1px solid #ccc;}
+        .back{margin:20px 0;display:block;color:#f48fb1;text-decoration:none;}
+    </style>
+</head>
+<body>
+    <div class="header">学生个人学期成绩查询</div>
+    <div class="content">
+        <a href="/student/index" class="back">← 返回学生首页</a>
+        <table>
+            <tr>
+                <th>学期</th>
+                <th>课程名称</th>
+                <th>考试分数</th>
+                <th>课程学分</th>
+            </tr>
+            {% for item in score_list %}
+            <tr>
+                <td>{{item.semester}}</td>
+                <td>{{item.course_name}}</td>
+                <td>{{item.score}}</td>
+                <td>{{item.credit}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>修改学生信息</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:微软雅黑;}
+        body{background:#fff;}
+        .header{text-align:center;padding:22px 0;font-size:24px;font-weight:bold;box-shadow:0 2px 5px #eee;}
+        .container{display:flex;width:100%;margin-top:30px;}
+        .sidebar{width:220px;background:#fff;border-right:1px solid #eee;min-height:calc(100vh - 80px);padding:20px 0;}
+        .sidebar a{display:block;padding:15px 25px;color:#555;text-decoration:none;}
+        .sidebar a:hover{background:#fce4ec;color:#d87092;}
+        .main{flex:1;padding:30px;}
+        .box{max-width:500px;background:#fff;padding:30px;box-shadow:0 0 10px #eee;border-radius:10px;}
+        h3{color:#d87092;margin-bottom:20px;}
+        input{width:100%;padding:10px;margin:10px 0;border:1px solid #f8bbd0;border-radius:8px;}
+        button{width:100%;padding:12px;background:#f48fb1;color:#fff;border:none;border-radius:8px;}
+        .back{display:inline-block;margin-top:15px;color:#90caf9;text-decoration:none;}
+    </style>
+</head>
+<body>
+    <div class="header">修改学生信息</div>
+    <div class="container">
+        <div class="sidebar">
+            <a href="/admin/index">首页</a>
+            <a href="/admin/stu_manage">学生管理</a>
+            <a href="/admin/course_manage">科目管理</a>
+            <a href="/admin/add_score">成绩录入</a>
+            <a href="/admin/score_manage">成绩修改/删除</a>
+            <a href="/admin/score_stat">成绩统计</a>
+            <a href="/admin/score_print">成绩打印</a>
+            <a href="/logout">退出登录</a>
+        </div>
+        <div class="main">
+            <div class="box">
+                <h3>编辑学生信息</h3>
+                <form action="/admin/save_student" method="post">
+                    <input type="hidden" name="student_id" value="{{stu.student_id}}">
+                    <input type="text" value="{{stu.student_id}}" disabled placeholder="学号">
+                    <input type="text" name="student_name" value="{{stu.student_name}}" placeholder="姓名" required>
+                    <input type="password" name="password" value="{{stu.password}}" placeholder="密码" required>
+                    <button type="submit">保存修改</button>
+                </form>
+                <a href="/admin/stu_manage" class="back">返回学生管理</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

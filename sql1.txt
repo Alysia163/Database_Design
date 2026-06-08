@@ -1,0 +1,57 @@
+-- 院系表
+CREATE TABLE department (
+    dept_id VARCHAR(10) PRIMARY KEY,
+    dept_name VARCHAR(50) NOT NULL UNIQUE
+);
+
+-- 专业表
+CREATE TABLE major (
+    major_id VARCHAR(10) PRIMARY KEY,
+    major_name VARCHAR(50) NOT NULL,
+    dept_id VARCHAR(10),
+    FOREIGN KEY (dept_id) REFERENCES department(dept_id)
+);
+
+-- 班级表
+CREATE TABLE class (
+    class_id VARCHAR(10) PRIMARY KEY,
+    class_name VARCHAR(50) NOT NULL,
+    major_id VARCHAR(10),
+    FOREIGN KEY (major_id) REFERENCES major(major_id)
+);
+
+-- 学生表
+CREATE TABLE student (
+    student_id VARCHAR(15) PRIMARY KEY,
+    student_name VARCHAR(20) NOT NULL,
+    password VARCHAR(20) NOT NULL DEFAULT '123456',
+    gender CHAR(2),
+    class_id VARCHAR(10),
+    FOREIGN KEY (class_id) REFERENCES class(class_id)
+);
+
+-- 课程表
+CREATE TABLE course (
+    course_id VARCHAR(10) PRIMARY KEY,
+    course_name VARCHAR(50) NOT NULL,
+    credit INT NOT NULL
+);
+
+-- 成绩表
+CREATE TABLE score (
+    student_id VARCHAR(15),
+    course_id VARCHAR(10),
+    score DECIMAL(5,2),
+    semester VARCHAR(20),
+    PRIMARY KEY (student_id, course_id),
+    FOREIGN KEY (student_id) REFERENCES student(student_id),
+    FOREIGN KEY (course_id) REFERENCES course(course_id)
+);
+
+-- 创建管理员表
+CREATE TABLE admin (
+    admin_id VARCHAR(20) PRIMARY KEY,
+    password VARCHAR(50) NOT NULL
+);
+
+ALTER TABLE course ADD `pass_line` INT DEFAULT 60;

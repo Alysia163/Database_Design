@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>学生首页 - 学生成绩数据库系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background-color: #ffffff;
+        }
+        .header {
+            background-color: #ffffff;
+            color: #4a4a4a;
+            text-align: center;
+            padding: 22px 0;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .container {
+            width: 80%;
+            margin: 50px auto;
+        }
+        .welcome-box {
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .welcome-box h2 {
+            color: #d87092;
+            margin-bottom: 20px;
+        }
+        .menu {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        .menu a {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #f48fb1;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        .menu a:hover {
+            background-color: #90caf9;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        学生成绩数据库系统 - 学生端
+    </div>
+
+    <div class="container">
+        <div class="welcome-box">
+            <h2>欢迎您，{{username}}同学</h2>
+            <p>请选择你要进行的操作</p>
+            <div class="menu">
+                <a href="/student/show_score">查看我的学期成绩</a>
+                <a href="/student/edit_pwd">修改个人密码</a>
+                <a href="/logout">退出登录</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

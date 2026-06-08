@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>修改成绩</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Microsoft YaHei;}
+        body{background:#fff;}
+        .header{text-align:center;padding:22px 0;font-size:24px;font-weight:bold;box-shadow:0 2px 5px #eee;}
+        .container{display:flex;width:100%;margin-top:30px;}
+        .sidebar{width:220px;background:#fff;border-right:1px solid #eee;min-height:calc(100vh - 80px);padding:20px 0;}
+        .sidebar a{display:block;padding:15px 25px;color:#555;text-decoration:none;}
+        .sidebar a:hover{background:#fce4ec;color:#d87092;}
+        .main{flex:1;padding:30px;}
+        .box{max-width:500px;background:#fff;padding:30px;box-shadow:0 0 10px #eee;border-radius:10px;}
+        h2{color:#d87092;margin-bottom:20px;}
+        input{width:100%;padding:10px;margin:10px 0;border:1px solid #f8bbd0;border-radius:8px;}
+        button{width:100%;padding:12px;background:#f48fb1;color:#fff;border:none;border-radius:8px;}
+        .back{display:inline-block;margin-top:15px;color:#90caf9;text-decoration:none;}
+    </style>
+</head>
+<body>
+    <div class="header">学生成绩数据库系统 - 管理员后台</div>
+    <div class="container">
+        <div class="sidebar">
+            <a href="/admin/index">首页</a>
+            <a href="/admin/stu_manage">学生管理</a>
+            <a href="/admin/course_manage">科目管理</a>
+            <a href="/admin/add_score">成绩录入</a>
+            <a href="/admin/score_manage">成绩修改/删除</a>
+            <a href="/admin/score_stat">成绩统计</a>
+            <a href="/admin/score_print">成绩打印</a>
+            <a href="/logout">退出登录</a>
+        </div>
+        <div class="main">
+            <div class="box">
+                <h2>修改学生成绩</h2>
+                <form action="/admin/do_edit_score" method="post">
+                    <input type="hidden" name="sid" value="{{info.student_id}}">
+                    <input type="hidden" name="cid" value="{{info.course_id}}">
+                    <input type="hidden" name="sem" value="{{info.semester}}">
+                    <input type="text" value="{{info.student_id}}" disabled placeholder="学号">
+                    <input type="text" value="{{info.course_name}}" disabled placeholder="课程">
+                    <input type="text" value="{{info.semester}}" disabled placeholder="学期">
+                    <input type="number" name="new_score" value="{{info.score}}" placeholder="输入新分数" required>
+                    <button type="submit">确认修改</button>
+                </form>
+                <a href="/admin/score_manage" class="back">返回成绩管理</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

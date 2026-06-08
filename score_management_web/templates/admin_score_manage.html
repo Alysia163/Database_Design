@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>成绩管理</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Microsoft YaHei;}
+        body{background:#fff;}
+        .header{text-align:center;padding:22px 0;font-size:24px;font-weight:bold;box-shadow:0 2px 5px #eee;}
+        .container{display:flex;width:100%;margin-top:30px;}
+        .sidebar{width:220px;background:#fff;border-right:1px solid #eee;min-height:calc(100vh - 80px);padding:20px 0;}
+        .sidebar a{display:block;padding:15px 25px;color:#555;text-decoration:none;}
+        .sidebar a:hover{background:#fce4ec;color:#d87092;}
+        .main{flex:1;padding:30px;}
+        .search-box{margin-bottom:20px;}
+        .search-box input{padding:8px;width:250px;border:1px solid #f8bbd0;border-radius:6px;}
+        .search-box button{padding:8px 15px;background:#f48fb1;color:#fff;border:none;border-radius:6px;cursor:pointer;}
+        table{width:100%;border-collapse:collapse;}
+        th{background:#fce4ec;color:#d87092;padding:12px;border:1px solid #ccc;}
+        td{padding:10px;border:1px solid #ccc;text-align:center;}
+        .edit-btn{background:#90caf9;color:#fff;padding:5px 10px;border:none;border-radius:4px;text-decoration:none;font-size:14px;}
+        .del-btn{background:#f48fb1;color:#fff;padding:5px 10px;border:none;border-radius:4px;text-decoration:none;font-size:14px;margin-left:5px;}
+    </style>
+</head>
+<body>
+    <div class="header">学生成绩数据库系统 - 管理员后台</div>
+    <div class="container">
+        <div class="sidebar">
+            <a href="/admin/index">首页</a>
+            <a href="/admin/stu_manage">学生管理</a>
+            <a href="/admin/course_manage">科目管理</a>
+            <a href="/admin/add_score">成绩录入</a>
+            <a href="/admin/score_manage">成绩修改/删除</a>
+            <a href="/admin/score_stat">成绩统计</a>
+            <a href="/admin/score_print">成绩打印</a>
+            <a href="/logout">退出登录</a>
+        </div>
+        <div class="main">
+            <div class="search-box">
+                <form method="get" action="/admin/score_manage">
+                    <input type="text" name="sid" placeholder="输入学号查询成绩" value="{{sid}}">
+                    <button type="submit">查询</button>
+                </form>
+            </div>
+            <table>
+                <tr>
+                    <th>学号</th>
+                    <th>课程名</th>
+                    <th>学期</th>
+                    <th>分数</th>
+                    <th>操作</th>
+                </tr>
+                {% for item in score_data %}
+                <tr>
+                    <td>{{item.student_id}}</td>
+                    <td>{{item.course_name}}</td>
+                    <td>{{item.semester}}</td>
+                    <td>{{item.score}}</td>
+                    <td>
+                        <a href="/admin/edit_score?sid={{item.student_id}}&cid={{item.course_id}}&sem={{item.semester}}" class="edit-btn">修改</a>
+                        <a href="/admin/del_score?sid={{item.student_id}}&cid={{item.course_id}}&sem={{item.semester}}" class="del-btn" onclick="return confirm('确定删除？')">删除</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+</html>

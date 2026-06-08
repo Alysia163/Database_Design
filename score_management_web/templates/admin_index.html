@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员后台 - 学生成绩数据库系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        body {
+            background-color: #ffffff;
+        }
+        .header {
+            background-color: #ffffff;
+            color: #4a4a4a;
+            text-align: center;
+            padding: 22px 0;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .container {
+            display: flex;
+            width: 100%;
+            margin-top: 30px;
+        }
+        .sidebar {
+            width: 220px;
+            background-color: #fff;
+            border-right: 1px solid #eee;
+            min-height: calc(100vh - 80px);
+            padding: 20px 0;
+        }
+        .sidebar a {
+            display: block;
+            padding: 15px 25px;
+            color: #555;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #fce4ec;
+            color: #d87092;
+        }
+        .main-content {
+            flex: 1;
+            padding: 30px;
+        }
+        .welcome-box {
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .welcome-box h2 {
+            color: #d87092;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        学生成绩数据库系统 - 管理员后台
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+            <a href="/admin/index">首页</a>
+            <a href="/admin/stu_manage">学生管理</a>
+            <a href="/admin/course_manage">科目管理</a>
+            <a href="/admin/add_score">成绩录入</a>
+            <a href="/admin/score_manage">成绩修改/删除</a>
+            <a href="/admin/score_stat">成绩统计</a>
+            <a href="/admin/score_print">成绩打印</a>
+            <a href="/admin/pwd_setting">密码管理</a>
+            <a href="/logout">退出登录</a>
+        </div>
+
+        <div class="main-content">
+            <div class="welcome-box">
+                <h2>欢迎，管理员！</h2>
+                <p>请从左侧菜单选择功能开始操作</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
